@@ -12,7 +12,7 @@ var numIslands = function(grid) {
   var yLength = grid.length;
 
   function outOfBound(y, x) {
-    return y > yLength-1 || y < 0 || x < 0 || x > xLength-1; 
+    return y > yLength-1 || y < 0 || x < 0 || x > xLength-1;
   }
 
   function isWater(y, x) {
@@ -24,64 +24,60 @@ var numIslands = function(grid) {
   }
 
   function isLand(y, x) {
-    return !outOfBound(y, x) && grid[y][x] === '1'; 
-  }
-
-  function isLastRow(y) {
-    return y + 1 === grid.length;
+    return !outOfBound(y, x) && grid[y][x] === '1';
   }
 
   function markSearched(y, x) {
     grid[y][x] = '-1';
   }
 
-  function searchLeft(y, x) {
+  function canSearchLeft(y, x) {
     var searchIndex = x - 1;
     if (isLand(y, searchIndex)) {
-      markSearched(y, searchIndex);
       return true;
     }
     return false;
   }
 
-  function searchRight(y, x) {
+  function canSearchRight(y, x) {
     var searchIndex = x + 1;
     if (isLand(y, searchIndex)) {
-      markSearched(y, searchIndex);
       return true;
     }
     return false;
   }
 
-  function searchUp(y, x) {
+  function canSearchUp(y, x) {
     var searchIndex = y - 1;
     if (isLand(searchIndex, x)) {
-      markSearched(searchIndex, x);
       return true;
     }
     return false;
   }
 
-  function searchDown(y, x) {
+  function canSearchDown(y, x) {
     var searchIndex = y + 1;
     if (isLand(searchIndex, x)) {
-      markSearched(searchIndex, x);
       return true;
     }
     return false;
   }
 
   function search(y, x) {
-    if (searchLeft(y, x)) {
+    if (canSearchLeft(y, x)) {
+      markSearched(y, x);
       search(y, x-1);
     }
-    if (searchRight(y, x)) {
+    if (canSearchRight(y, x)) {
+      markSearched(y, x+1);
       search(y, x+1);
     }
-    if (searchUp(y, x)) {
+    if (canSearchUp(y, x)) {
+      markSearched(y-1, x);
       search(y-1, x);
     }
-    if (searchDown(y, x)) {
+    if (canSearchDown(y, x)) {
+      markSearched(y+1, x);
       search(y+1, x);
     }
   }
