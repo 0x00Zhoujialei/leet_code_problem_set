@@ -2,7 +2,7 @@
  * Initialize your data structure here.
  */
 var MyQueue = function() {
-  this.innerStack = [];
+  his.innerQueue = [];
 };
 
 /**
@@ -11,7 +11,7 @@ var MyQueue = function() {
  * @return {void}
  */
 MyQueue.prototype.push = function(x) {
-  this.innerStack.push(x);
+  this.innerQueue.push(x);
 };
 
 /**
@@ -19,7 +19,7 @@ MyQueue.prototype.push = function(x) {
  * @return {number}
  */
 MyQueue.prototype.pop = function() {
-  return this.innerStack.shift();
+  return this.innerQueue.shift();
 };
 
 /**
@@ -27,7 +27,7 @@ MyQueue.prototype.pop = function() {
  * @return {number}
  */
 MyQueue.prototype.peek = function() {
-  return this.innerStack[0];
+  return this.innerQueue[0];
 };
 
 /**
@@ -35,7 +35,7 @@ MyQueue.prototype.peek = function() {
  * @return {boolean}
  */
 MyQueue.prototype.empty = function() {
-  return !this.innerStack.length;
+  return !this.innerQueue.length;
 };
 
 /**
